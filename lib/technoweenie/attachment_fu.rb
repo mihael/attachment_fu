@@ -359,7 +359,7 @@ module Technoweenie # :nodoc:
       # it's not needed anymore.  The collection is cleared after saving the attachment.
       def temp_path
         p = temp_paths.first
-        p.respond_to?(:path) ? p.path : p.to_s
+        p.respond_to?(:tempfile) ? p.tempfile.path : p.to_s
       end
 
       # Gets an array of the currently used temp paths.  Defaults to a copy of #full_filename.
