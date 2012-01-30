@@ -42,7 +42,7 @@ module Technoweenie # :nodoc:
       #
       # You can change the location of the config path by passing a full path to the :s3_config_path option.
       #
-      #   has_attachment :storage => :s3, :s3_config_path => (RAILS_ROOT + '/config/s3.yml')
+      #   has_attachment :storage => :s3, :s3_config_path => (Rails.root + 'config/s3.yml')
       #
       # === Required configuration parameters
       #
@@ -183,8 +183,8 @@ module Technoweenie # :nodoc:
           end
 
           begin
-            @@s3_config_path = base.attachment_options[:s3_config_path] || (RAILS_ROOT + '/config/amazon_s3.yml')
-            @@s3_config = @@s3_config = YAML.load(ERB.new(File.read(@@s3_config_path)).result)[RAILS_ENV].symbolize_keys
+            @@s3_config_path = base.attachment_options[:s3_config_path] || (Rails.root + 'config/amazon_s3.yml')
+            @@s3_config = @@s3_config = YAML.load(ERB.new(File.read(@@s3_config_path)).result)[Rails.env].symbolize_keys
           #rescue
           #  raise ConfigFileNotFoundError.new('File %s not found' % @@s3_config_path)
           end
